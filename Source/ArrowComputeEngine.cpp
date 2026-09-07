@@ -353,8 +353,8 @@ static boss::Expression evaluate(boss::Expression&& e) {
                {intermediates.at(dynamics.at(0)),
                 {"fetch", FetchNodeOptions(get<int>(dynamics.at(1)), get<int>(dynamics.at(2)))}}));
          } < "OrderBy"_(AnySequence_) >=
-         Description("Sort rows by one or more columns; wrap a column in (Desc "
-                     "col) to sort descending") > Recurse(evaluate) >
+         Description("Sort rows by one or more columns; wrap a column in (keys "
+                     "(Desc col)) to sort descending") > Recurse(evaluate) >
          [](auto, auto dynamics, auto) {
            auto orderKeys = std::vector<compute::SortKey>();
            for(auto& it : get<ComplexExpression>(dynamics.at(1)).getDynamicArguments()) {
